@@ -21,7 +21,7 @@ class ToDoList {
   }
 
   addItem(item: Item): void {
-    if (this.canAddItem()) {
+    if (item.isValid() && this.canAddItem()) {
       if (this.items.length < 10) {
         this.items.push(item);
 

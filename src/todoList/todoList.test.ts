@@ -3,9 +3,13 @@ import User from "../user/user";
 import ToDoList from "./todoList";
 
 test('Max items', () => {
-    const item = new Item("Stylo", "", new Date(), 1);
-    const user = new User("", "", "", new Date(new Date().setFullYear(new Date().getFullYear() - 15)), '')
-    const todoList = new ToDoList(user, [item, item, item, item, item, item, item, item, item, item], "", null);
+    const user = new User("john@gmail.com", "John", "Doe", new Date(new Date().setFullYear(new Date().getFullYear() - 15)), '')
+
+    const items = Array.from({ length: 10 }, () => new Item("Stylo", "Stylo Vert", new Date(), 1));
+    
+    const todoList = new ToDoList(user, items, "Todo", null); 
+
+    const item = new Item("Stylo", "Stylo Bleu", new Date(), 1);
 
     expect(() => todoList.addItem(item)).toThrow("TodoList has already 10 items."); 
   });
