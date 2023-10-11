@@ -29,16 +29,11 @@ class ToDoList {
           this.sendEmailNotification();
         }
 
-        console.log(`Item '${item.name}' added to ToDoList '${this.title}'`);
       } else {
-        console.log(
-          'Item not added. ToDoList has reached the maximum limit (10 items).'
-        );
+        throw Error('TodoList has already 10 items.');
       }
     } else {
-      console.log(
-        'Item not added. User is not valid or time constraint violated.'
-      );
+      throw new Error('Time constraint violated.');
     }
   }
 
