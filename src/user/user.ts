@@ -4,13 +4,13 @@ class User {
   email: string;
   firstName: string;
   lastName: string;
-  birthDate: string;
+  birthDate: Date;
 
   constructor(
     email: string,
     firstName: string,
     lastName: string,
-    birthDate: string
+    birthDate: Date
   ) {
     this.email = email;
     this.firstName = firstName;
@@ -19,14 +19,13 @@ class User {
   }
 
   isValid() {
-    if (!this.email || isEmail(this.email)) {
+    if (isEmail(this.email)) {
       return false;
     }
     console.log('good email');
 
     const today = new Date();
-    const birthDate = new Date(this.birthDate);
-    const age = today.getFullYear() - birthDate.getFullYear();
+    const age = today.getFullYear() - this.birthDate.getFullYear();
     if (age < 13) {
       return false;
     }
