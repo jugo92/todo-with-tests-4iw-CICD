@@ -16,6 +16,7 @@ class Item {
     this.content = content;
     this.creation_date = creation_date;
     this.idTodoList = idTodoList;
+  
   }
 
   isValid = ():boolean => {
