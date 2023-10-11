@@ -18,6 +18,10 @@ class User {
     this.birthDate = birthDate;
   }
 
+  getEmail(): string {
+    return this.email;
+  }
+
   isValid() {
     if (isEmail(this.email)) {
       return false;

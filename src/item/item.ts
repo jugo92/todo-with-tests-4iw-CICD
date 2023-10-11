@@ -14,7 +14,13 @@ class Item {
     this.content = content;
     this.creation_date = creation_date;
     this.idTodoList = idTodoList;
+  
   }
+
+  getName(): string {
+    return this.name;
+  }
+
 }
 
 export default Item;

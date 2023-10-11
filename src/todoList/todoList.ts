@@ -1,37 +1,69 @@
+import EmailSenderService from "../emailService/EmailSenderService";
 import Item from "../item/item";
+import User from "../user/user";
 
 class ToDoList {
-  email: string;
+  creator: User ;
   items: Item[];
-  last_insertion : Date
+  title: string;
+  last_insertion : Date;
+  emailSenderService: EmailSenderService;
+  
 
-  constructor(email: string, items: Item[], last_insertion: Date) {
-    this.email = email;
+  constructor( creator: User, items: Item[],title: string, last_insertion: Date, emailSenderService: EmailSenderService) {
+    this.creator = creator;
     this.items = items;
+    this.title = title;
     this.last_insertion = last_insertion;
+    this.emailSenderService = emailSenderService;
   }
 
-  isValid(): boolean{
-    return true;
+  isValidUser(): boolean{
+    return this.creator.isValid();
   }
 
-  addItem = (item:Item) => {
 
-    
+  addItem(item:Item): void {
+    if (this.isValidUser() && this.canAddItem() ) {
+        if (this.items.length < 10) {
+            this.items.push(item);
 
-    if(this.items.length === 10){
-      //throw Exception length max atteinte
+            if (this.items.length === 8) {
+                this.sendEmailNotification();
+            }
+
+            console.log(`Item '${item.getName()}' added to ToDoList '${this.title}'`);
+        } else {
+            console.log('Item not added. ToDoList has reached the maximum limit (10 items).');
+        }
+    } else {
+        console.log('Item not added. User is not valid or time constraint violated.');
     }
-
-    //Check if Date is 30min after last insertion
-
-    
-    this.items.push(item);
-
-    if(this.items.length === 8){
-      //send Mail
-    }
-  }
 }
 
+private canAddItem(): boolean {
+  if (!this.last_insertion) {
+      return true;
+  }
+
+  const minTimeDifference = 30 * 60 * 1000; // 30 minutes in milliseconds
+  const currentTime = new Date();
+  const elapsedTime = currentTime.getTime() - this.last_insertion.getTime();
+
+  return elapsedTime >= minTimeDifference;
+}
+
+private sendEmailNotification(): void {
+    const remainingItems = 10 - this.items.length;
+    const emailSubject = 'Limite d\'ajout d\'items atteinte';
+    const emailBody = `Vous ne pouvez plus ajouter que ${remainingItems} items à votre ToDoList.`;
+
+    this.emailSenderService.sendEmail(this.creator.getEmail(), emailSubject, emailBody);
+}
+}
 export default ToDoList;
+
+
+
+
+
