@@ -21,11 +21,18 @@ class ToDoList {
   }
 
   addItem(item: Item): void {
-    if (item.isValid() && this.canAddItem()) {
+
+    if(!item.isValid()){
+      throw Error('Item invalide.');
+    }
+
+    if (this.canAddItem()) {
+      console.log('CAN ADD : ', this.items.length)
       if (this.items.length < 10) {
         this.items.push(item);
 
         if (this.items.length === 8) {
+          console.log(`ICI : ${this.items.length}`)
           this.sendEmailNotification();
         }
 
@@ -37,7 +44,7 @@ class ToDoList {
     }
   }
 
-  private canAddItem(): boolean {
+   canAddItem(): boolean {
     if (!this.last_insertion) {
       return true;
     }
@@ -49,16 +56,8 @@ class ToDoList {
     return elapsedTime >= minTimeDifference;
   }
 
-  private sendEmailNotification(): void {
-    const remainingItems = 10 - this.items.length;
-    const emailSubject = "Limite d'ajout d'items atteinte";
-    const emailBody = `Vous ne pouvez plus ajouter que ${remainingItems} items à votre ToDoList.`;
-
-    new EmailSenderService().sendEmail(
-      this.creator.email,
-      emailSubject,
-      emailBody
-    );
+  sendEmailNotification(): void {
+    new EmailSenderService().sendEmail();
   }
 }
 export default ToDoList;
