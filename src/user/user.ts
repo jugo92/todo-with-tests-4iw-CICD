@@ -8,7 +8,7 @@ class User {
   lastName: string;
   birthDate: Date;
   password: string;
-  todolist: ToDoList;
+  todolist: ToDoList | null;
 
   constructor(
     email: string,
@@ -22,11 +22,12 @@ class User {
     this.firstName = firstName;
     this.lastName = lastName;
     this.birthDate = birthDate;
+    this.todolist = null;
   }
 
-  createTodolist() {
-    if (this.isValid()) {
-      this.todolist = new ToDoList(this, [], new Date());
+  createTodoList() {
+    if (this.isValid() && this.todolist === null) {
+      this.todolist = new ToDoList(this, [], 'Ma todo', null);
     }
   }
 
