@@ -1,12 +1,14 @@
 import Item from "../item/item";
 
 class ToDoList {
-  idUser: number;
+  email: string;
   items: Item[];
+  last_insertion : Date
 
-  constructor(idUser: number, items: Item[]) {
-    this.idUser = idUser;
+  constructor(email: string, items: Item[], last_insertion: Date) {
+    this.email = email;
     this.items = items;
+    this.last_insertion = last_insertion;
   }
 
   isValid(): boolean{
@@ -20,6 +22,9 @@ class ToDoList {
     if(this.items.length === 10){
       //throw Exception length max atteinte
     }
+
+    //Check if Date is 30min after last insertion
+
     
     this.items.push(item);
 
