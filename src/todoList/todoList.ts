@@ -27,12 +27,10 @@ class ToDoList {
     }
 
     if (this.canAddItem()) {
-      console.log('CAN ADD : ', this.items.length)
       if (this.items.length < 10) {
         this.items.push(item);
 
         if (this.items.length === 8) {
-          console.log(`ICI : ${this.items.length}`)
           this.sendEmailNotification();
         }
 
