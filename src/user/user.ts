@@ -1,5 +1,17 @@
 class User {
-  constructor(id, email, firstName, lastName, birthDate) {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  birthDate: string;
+
+  constructor(
+    id: number,
+    email: string,
+    firstName: string,
+    lastName: string,
+    birthDate: string
+  ) {
     this.id = id;
     this.email = email;
     this.firstName = firstName;
@@ -32,5 +44,4 @@ class User {
     return true;
   }
 }
-
-module.exports = User;
+export default User;

@@ -1,11 +1,10 @@
 class ToDoList {
-
   idUser: number;
-  items: Item[]; 
+  items: Item[];
 
   constructor(idUser: number, items: Item[]) {
-      this.idUser = idUser;
-      this.items = items;
+    this.idUser = idUser;
+    this.items = items;
   }
 }
 
