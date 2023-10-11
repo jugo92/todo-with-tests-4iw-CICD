@@ -16,12 +16,20 @@ class Item {
     this.content = content;
     this.creation_date = creation_date;
     this.idTodoList = idTodoList;
-  
   }
 
-  isValid = ():boolean => {
-    return !isEmpty(this.content) && !isEmpty(this.name);
-  }
+  isValid = (): boolean => {
+    if (isEmpty(this.name)) {
+      return false;
+    }
+    if (isEmpty(this.content)) {
+      return false;
+    }
+    if (this.content.length > 1000) {
+      return false;
+    }
+    return true;
+  };
 }
 
 export default Item;
