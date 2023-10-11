@@ -32,7 +32,7 @@ class ToDoList {
                 this.sendEmailNotification();
             }
 
-            console.log(`Item '${item.getName()}' added to ToDoList '${this.title}'`);
+            console.log(`Item '${item.name}' added to ToDoList '${this.title}'`);
         } else {
             console.log('Item not added. ToDoList has reached the maximum limit (10 items).');
         }
