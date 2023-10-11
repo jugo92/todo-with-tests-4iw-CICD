@@ -1,3 +1,5 @@
+import isEmpty from 'validator/lib/isEmpty';
+
 class Item {
   name: string;
   content: string;
@@ -14,6 +16,10 @@ class Item {
     this.content = content;
     this.creation_date = creation_date;
     this.idTodoList = idTodoList;
+  }
+
+  isValid = ():boolean => {
+    return !isEmpty(this.content) && !isEmpty(this.name);
   }
 }
 
