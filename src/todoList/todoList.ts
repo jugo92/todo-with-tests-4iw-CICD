@@ -1,6 +1,7 @@
 import EmailSenderService from '../emailService/EmailSenderService';
 import Item from '../item/item';
 import User from '../user/user';
+import isEmpty from 'validator/lib/isEmpty';
 
 class ToDoList {
   creator: User;
@@ -20,7 +21,16 @@ class ToDoList {
     this.last_insertion = last_insertion;
   }
 
+  isValid = () => {
+    return !isEmpty(this.title) && this.creator.isValid();
+  }
   addItem(item: Item): void {
+
+    this.items.map((itemList:Item) => {
+      if(itemList.name === item.name){
+        throw Error('Ce nom existe deja.');
+      }
+    })
 
     if(!item.isValid()){
       throw Error('Item invalide.');
