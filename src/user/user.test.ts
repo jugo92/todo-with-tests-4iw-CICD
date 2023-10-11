@@ -7,5 +7,5 @@ test('user is valid', () => {
 
 test('user is invalid without email', () => {
   const user = new User(1, '', 'test', 'test', '2002-01-01');
-  expect(user.isValid()).toBe(true);
+  expect(user.isValid()).toBe(false);
 });

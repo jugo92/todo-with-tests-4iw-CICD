@@ -1,5 +1,6 @@
+import isEmail from 'validator/lib/isEmail';
+
 class User {
-  id: number;
   email: string;
   firstName: string;
   lastName: string;
@@ -12,7 +13,6 @@ class User {
     lastName: string,
     birthDate: string
   ) {
-    this.id = id;
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -20,19 +20,11 @@ class User {
   }
 
   isValid() {
-    if (!this.email || !this.email.includes('@')) {
+    if (!this.email || isEmail(this.email)) {
       return false;
     }
     console.log('good email');
-    if (!this.firstName || !this.lastName) {
-      return false;
-    }
-    console.log('good name');
 
-    if (!this.birthDate) {
-      return false;
-    }
-    console.log('good birthdate');
     const today = new Date();
     const birthDate = new Date(this.birthDate);
     const age = today.getFullYear() - birthDate.getFullYear();

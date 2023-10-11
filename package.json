@@ -10,7 +10,9 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@types/validator": "^13.11.2",
     "nodemon": "^3.0.1",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "validator": "^13.11.0"
   }
 }
