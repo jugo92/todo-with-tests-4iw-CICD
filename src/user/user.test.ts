@@ -2,7 +2,7 @@ import User from './user';
 
 test('user is valid', () => {
   const user = new User(
-    'test@test.com',
+    'tes',
     'test',
     'test',
     new Date(new Date().setFullYear(new Date().getFullYear() - 15)),
